@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.min.css">
+    <title>Quiz</title>
+</head>
+
+<body>
+    <div class="container start__btn-container">
+        <button class="start__btn">Start Quiz</button>
+    </div>
+    <!-- Info Box -->
+    <div class="info">
+        <div class="container info-container">
+            <div class="info__title">
+                <span>Some rules of this quiz</span>
+            </div>
+            <ul class="info__list">
+                <li class="info__list-item">You will have only <span>15 seconds</span> per each question.</li>
+                <li class="info__list-item">Once you select your answer, it can't be undone.</li>
+                <li class="info__list-item">You can't select any option once time goes off.</li>
+                <li class="info__list-item">You can't exit from the Quiz while you're playing.</li>
+                <li class="info__list-item">You'll get points on the basis of your correct answers.</li>
+            </ul>
+            <div class="info__buttons">
+                <button class="info__btn-quit btn btn_quit">Quit</button>
+                <button class="info__btn-start btn btn_start">Start</button>
+            </div>
+        </div>
+    </div>
+    <!-- Quiz Box -->
+    <div class="quiz">
+        <div class="container quiz-container">
+            <header>
+                <div class="quiz__title">Awesome Quiz Application</div>
+                <div class="quiz__timer">
+                    <div class="quiz__timer-text">Time left</div>
+                    <div class="quiz__timer-sec">15</div>
+                </div>
+            </header>
+            <section class="quiz__questions">
+                <div class="quiz__question">What does HTML stand for?</div>
+                <div class="quiz__options">
+                    <div class="quiz__option">
+                        <span>Hyper Text Preprocessor</span>
+                        <div class="quiz__icon quiz__icon_tick"><i class="fas fa-check"></i></div>
+                    </div>
+                    <div class="quiz__option">
+                        <span>Hyper Text Preprocessor</span>
+                        <div class=" quiz__icon quiz__icon_cross"><i class="fas fa-times"></i></div>
+                    </div>
+                    <div class="quiz__option">
+                        <span>Hyper Text Preprocessor</span>
+
+                    </div>
+                    <div class="quiz__option">
+                        <span>Hyper Text Preprocessor</span>
+
+                    </div>
+                </div>
+            </section>
+            <!-- Quiz Box Footer -->
+            <footer>
+                <div class="quiz__total">
+                    <div class="quiz__total-count">
+                        <p class="quiz__num quiz__num-current">2</p> of <p class="quiz__num quiz__num-total">5</p>
+                        Questions
+                    </div>
+                    <button class="quiz__btn-next btn btn_next">Next question</button>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <!-- Quiz Finish -->
+    <div class="result">
+        <div class="container result-container">
+            <div class="result__icon">
+                <i class="fas fa-crown"></i>
+            </div>
+            <div class="result__text">You've completed the Quiz!</div>
+            <div class="result__score">
+                <div>and sorry, You got only <span class="result__score-correct">2</span> ouf of <span class="result__score-total">5</span></div>
+            </div>
+            <div class="result__btns">
+                <button class="btn btn_replay result__btn-replay">Replay Quiz</button>
+                <button class="btn btn_quit result__btn-quit">Quit</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

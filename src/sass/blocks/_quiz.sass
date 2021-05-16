@@ -1,0 +1,110 @@
+.quiz
+    &-container
+        opacity: 0
+        pointer-events: none
+        transform: translate(-50%, -50%) scale(0.9)
+    & header
+        position: relative
+        z-index: 99
+        height: 70px
+        padding: 0 30px
+        background: #fff
+        display: flex
+        align-items: center
+        justify-content: space-between
+        border-radius: 5px 5px 0 0
+        box-shadow: 0px 3px 5px 1px rgba(0, 0, 0, 0.1)
+    &__title
+        font-size: 20px
+        font-weight: 500
+    &__timer
+        display: flex
+        align-items: center
+        justify-content: space-between
+        width: 145px
+        height: 45px
+        background: #cce5ff
+        border: 1px solid #b8daff
+        border-radius: 5px
+        padding: 0 8px
+        &-text
+            font-weight: 400
+            font-size: 1.1rem
+            user-select: none
+        &-sec
+            font-size: 1.2rem
+            font-weight: 500
+            background: #343a40
+            height: 30px
+            width: 45px
+            color: #fff
+            text-align: center
+            line-height: 30px
+            border-radius: 5px
+            border: 1px solid #343a40
+            user-select: none
+    &__questions
+        padding: 25px 30px 20px 30px
+        background: #fff
+    &__question
+        font-size: 25px
+        font-weight: 600
+        margin-bottom: 10px
+    &__options
+        padding: 20px 0
+        display: block
+    &__option
+        background: aliceblue
+        border: 1px solid #84c5fe
+        font-size: 1.1rem
+        border-radius: 5px
+        padding: 8px 15px
+        margin-bottom: 18px
+        display: flex
+        align-items: center
+        justify-content: space-between
+        cursor: pointer
+        transition: all 0.3s ease-in-out
+        &:last-child
+            margin-bottom: 0
+        &:hover
+            color: #004085
+            background: #cce5ff
+            border-color: #b8daff
+    &__icon
+        height: 25px
+        width: 25px
+        border: 2px solid transparent
+        border-radius: 50%
+        text-align: center
+        font-size: 13px
+        display: grid
+        place-items: center
+        pointer-events: none
+        &_tick
+            color: #23903c
+            border-color: #23903c
+            background: #d4edda
+        &_cross
+            color: #a42834
+            border-color: #a42834
+            background: #f8d7da
+    & footer
+        border-top: 1px solid lightgrey
+        height: 60px
+    &__total
+        height: 100%
+        display: flex
+        justify-content: space-between
+        align-items: center
+        padding: 15px 30px
+        &-count
+            width: 150px
+            display: flex
+            justify-content: space-between
+            font-size: 1.1rem
+    &__num
+        font-weight: 600
+        font-size: 1.1rem
+    &__next
+       
