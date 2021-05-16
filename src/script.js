@@ -28,9 +28,13 @@ restartBtn.addEventListener('click', () => {
 let questionCounter = 0;
 //counter for correct answers
 let correctAns = 0;
+//timer setup
+let timerSec = 15;
 
 //function to show card info, getting data from array from questions.js
 function showCardInfo(index) {
+    //start timer
+    setupTimer(timerSec);
     //get single question info from questions by index
     const item = questions[index];
     const question = item.question;
@@ -135,3 +139,30 @@ nextBtn.addEventListener('click', () => {
         quizBox.classList.remove('active-info');
     }
 })
+
+// **** TIMER ****
+
+//get time diff
+function getTimeDiff(deadline) {
+    const timeNow = Date.parse(new Date());
+    const timeDiff = (deadline - timeNow)/1000 ;
+    console.log(timeDiff)
+    return timeDiff
+}
+
+function setupTimer(sec) {
+    //get timer from page
+    const timerDOM = document.querySelector('.quiz__timer-sec');
+    //get deadline
+    const deadline = Date.parse(new Date()) + sec*1000;
+    console.log(deadline)
+    function updateTimer() {
+        const timeDiff = getTimeDiff(deadline)
+        timerDOM.textContent = timeDiff;
+        if (timeDiff <= 0) {
+            clearInterval(timerId)
+        }
+    }
+
+    let timerId = setInterval(updateTimer, 1000)
+}
