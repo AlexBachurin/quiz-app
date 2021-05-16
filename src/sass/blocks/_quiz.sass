@@ -78,14 +78,15 @@
         border-radius: 50%
         text-align: center
         font-size: 13px
-        display: grid
         place-items: center
         pointer-events: none
+        display: none
         &_tick
             color: #23903c
             border-color: #23903c
             background: #d4edda
         &_cross
+            display: grid
             color: #a42834
             border-color: #a42834
             background: #f8d7da
@@ -108,3 +109,11 @@
         font-size: 1.1rem
     &__next
        
+.correct
+    background-color: rgba(35, 144, 60, 0.5)
+.wrong
+    background-color: rgba(164, 40, 52, 0.5)
+.display-icon
+    display: grid
+.answered
+    pointer-events: none
