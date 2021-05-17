@@ -1,3 +1,5 @@
+//questions data array, u can add more questions, but dont change structure of item
+
 let questions = [
     {
     numb: 1,
