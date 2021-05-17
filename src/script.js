@@ -1,7 +1,7 @@
 //get elems
 const startBtn = document.querySelector('.start__btn'),
     info = document.querySelector('.info-container'),
-    quitBtn = document.querySelector('.info__btn-quit'),
+    quitBtn = document.querySelectorAll('.btn_quit'),
     restartBtn = document.querySelector('.info__btn-start'),
     resultBox = document.querySelector('.result-container');
 
@@ -10,10 +10,7 @@ startBtn.addEventListener('click', () => {
     info.classList.add('active-info')
 })
 
-//exit quiz
-quitBtn.addEventListener('click', () => {
-    window.location.reload();
-})
+
 
 const quizBox = document.querySelector('.quiz-container');
 
@@ -61,7 +58,7 @@ function showCardInfo(index) {
     
     optionChoice.forEach(option => {
         option.addEventListener('click', (e) => {
-            const target = e.target;
+            const target = e.currentTarget;
             //get clicked element text content
             // const text = target.textContent;
             //get correct answer
@@ -196,7 +193,6 @@ nextBtn.addEventListener('click', () => {
 function getTimeDiff(deadline) {
     const timeNow = Date.parse(new Date());
     const timeDiff = (deadline - timeNow)/1000 ;
-    console.log(timeDiff)
     return timeDiff
 }
 
@@ -206,7 +202,6 @@ function setupTimer(sec) {
     
     //get deadline
     const deadline = Date.parse(new Date()) + sec*1000;
-    console.log(deadline)
     function updateTimer() {
         const timeDiff = getTimeDiff(deadline)
         timerDOM.textContent = timeDiff;
@@ -229,8 +224,9 @@ function setupTimer(sec) {
 }
 
 // **** QUIT QUIZ  ****
-// const quitBtn = document.querySelector('.result__btn-quit');
-
-// quitBtn.addEventListener('click', () => {
-//     window.location.reload();
-// })
+//exit quiz
+quitBtn.forEach(btn => {
+    btn.addEventListener('click', () => {
+        window.location.reload();
+    })
+})
