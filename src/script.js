@@ -3,7 +3,9 @@ const startBtn = document.querySelector('.start__btn'),
     info = document.querySelector('.info-container'),
     quitBtn = document.querySelectorAll('.btn_quit'),
     restartBtn = document.querySelector('.info__btn-start'),
-    resultBox = document.querySelector('.result-container');
+    resultBox = document.querySelector('.result-container'),
+    nextBtn = document.querySelector('.quiz__btn-next'),
+    quizBox = document.querySelector('.quiz-container');
 
 //show rules, start
 startBtn.addEventListener('click', () => {
@@ -12,7 +14,7 @@ startBtn.addEventListener('click', () => {
 
 
 
-const quizBox = document.querySelector('.quiz-container');
+
 
 //process to quiz
 restartBtn.addEventListener('click', () => {
@@ -63,8 +65,6 @@ function showCardInfo(index) {
             // const text = target.textContent;
             //get correct answer
             const correctOption = findCorrectOptionElement();
-            console.log(target)
-            console.log(target.firstElementChild)
             if (target.textContent === answer || target.firstElementChild.textContent === answer) {
                 //increase correct answer value and show green tick to user
                 correctAns++;
@@ -136,7 +136,23 @@ function showScore() {
     userScore.textContent = correctAns;
     //total score is our array with questions length
     totalScore.textContent = questions.length;
+    //show message
+    showScoreMessage();
+}
 
+//shhow score message
+function showScoreMessage() {
+    const messageDOM = document.querySelector('.result__score-message');
+    let message = ''
+    //check correct answers
+    if (correctAns === 5) {
+        message = 'Perfect!'
+    } else if (correctAns >= 2) {
+        message = 'not bad!'
+    } else  {
+        message = 'You can do better!'
+    }
+    messageDOM.textContent = message;
 }
 
 // **** HELPING FUNCTIONALITY ****
@@ -221,7 +237,7 @@ function setupTimer(sec) {
 
 
 // **** NEXT BUTTON FUNCTIONALITY ****
-const nextBtn = document.querySelector('.quiz__btn-next');
+
 
 nextBtn.addEventListener('click', () => {
     //check counter
@@ -236,6 +252,13 @@ nextBtn.addEventListener('click', () => {
         quizBox.classList.remove('active-info');
         //show user score
         showScore()
+        //reset correct answers
+        correctAns = 0;
+        //reset question counter
+        questionCounter = 0;
+        //reset timer
+        clearInterval(quizTimer);
+        
     }
 })
 

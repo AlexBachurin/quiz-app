@@ -10,7 +10,7 @@
         transform: translate(-50%, -50%) scale(0.9)
     &__icon
         font-size: 100px
-        color: #007bff
+        color: var(--main-color)
         margin-bottom: 20px
     &__text
         font-size: 20px
@@ -21,6 +21,10 @@
         font-size: 1.2rem
         margin-bottom: 10px
         font-weight: 500
+        &-correct
+            color: var(--main-color)
+        &-message
+            text-transform: capitalize
         & span
             padding: 0 3px
             font-weight: 600
@@ -36,6 +40,6 @@
         font-size: 1.1rem
         font-weight: 500
         border-radius: 5px
-        border: 1px solid #007bff
+        border: 1px solid var(--main-color)
         cursor: pointer
         transition: 0.3s all ease-in-out
