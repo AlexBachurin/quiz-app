@@ -251,9 +251,11 @@ function setupTimer(sec) {
 nextBtn.addEventListener('click', () => {
     //check counter
     questionCounter++;
+    //fix for timer line 
+    clearInterval(timerLineId)
     //if we still have questions keep asking them
     if (questionCounter < questions.length) {
-        showCardInfo(questionCounter);
+        showCardInfo(questionCounter);       
     //else show result window
     } else if (questionCounter === questions.length) {
         resultBox.classList.add('active-info');
