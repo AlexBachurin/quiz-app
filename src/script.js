@@ -55,7 +55,7 @@ function showCardInfo(index) {
 
     //setup clicking on option choice
     const optionChoice = [...document.querySelectorAll('.quiz__option')];
-    const icons = document.querySelectorAll('.quiz__icon');
+    
     const wrongIcon = `<div class=" quiz__icon quiz__icon_cross"><i class="fas fa-times"></i></div>`
     
     
@@ -65,33 +65,28 @@ function showCardInfo(index) {
             //get clicked element text content
             const text = target.textContent;
             //get correct answer
-            const correctOption = findCorrectAnswer(optionChoice, answer);
+            const correctOption = findCorrectOptionElement();
 
             if (text === answer) {
                 //increase correct answer value and show green tick to user
                 correctAns++;
                 option.classList.add('correct')
-                icons.forEach(icon => {
-                    icon.classList.add('display-icon')
-                })
+                //display icons
+                showIcons()
             } else {
                 //else append cross icon to clicked element and show right answer
                 // and decorate wrong answer
                 option.innerHTML += wrongIcon;
                 option.classList.add('wrong');
                 //display icons
-                icons.forEach(icon => {
-                    icon.classList.add('display-icon')
-                })
+                showIcons();
                 //show correct option
-                correctOption[0].classList.add('correct');
+                correctOption.classList.add('correct');
             }
             //enable next button
             enableBtn();
             //disable clicking on options
-            optionChoice.forEach(option => {
-                option.classList.add('answered')
-            })
+            disableOptions(optionChoice)
             //clear quiz timer
             clearInterval(quizTimer)
 
@@ -137,13 +132,14 @@ function quizFooterInfo() {
 
 // **** HELPING FUNCTIONALITY ****
 //find correct option
-function findCorrectAnswer(optionsArr, correctAns) {
-    const correctOption = optionsArr.filter(item => {
-        const child = item.firstElementChild;
-        if (child.textContent === correctAns) {
-            return item;
-        }
-    })
+function findCorrectOptionElement() {
+    // const correctOption = optionsArr.filter(item => {
+    //     const child = item.firstElementChild;
+    //     if (child.textContent === correctAns) {
+    //         return item;
+    //     }
+    // })
+    const correctOption = document.querySelector('.quiz__icon_tick').parentElement;
 
     return correctOption;
 }
@@ -157,6 +153,20 @@ function disableBtn() {
 function enableBtn() {
     nextBtn.classList.remove('btn-disabled');
     nextBtn.disabled = false;
+}
+//disable clicking on option choice
+function disableOptions(optionChoiceArr) {
+    //disable clicking on options
+    optionChoiceArr.forEach(option => {
+        option.classList.add('answered')
+    })
+}
+//show icons
+function showIcons() {
+    const icons = document.querySelectorAll('.quiz__icon');
+    icons.forEach(icon => {
+        icon.classList.add('display-icon')
+    })
 }
 
 
@@ -192,6 +202,7 @@ function getTimeDiff(deadline) {
 function setupTimer(sec) {
     //get timer from page
     const timerDOM = document.querySelector('.quiz__timer-sec');
+    
     //get deadline
     const deadline = Date.parse(new Date()) + sec*1000;
     console.log(deadline)
@@ -200,6 +211,16 @@ function setupTimer(sec) {
         timerDOM.textContent = timeDiff;
         if (timeDiff <= 0) {
             clearInterval(quizTimer)
+            //enable next button
+            enableBtn();
+            //disable clicking on options
+            const optionChoice = [...document.querySelectorAll('.quiz__option')];
+            disableOptions(optionChoice)
+            //show icons
+            showIcons()
+            //get correct answer and show it
+            correctOption = findCorrectOptionElement();
+            correctOption.classList.add('correct');
         }
     }
 
