@@ -6,6 +6,7 @@ const startBtn = document.querySelector('.start__btn'),
     resultBox = document.querySelector('.result-container'),
     nextBtn = document.querySelector('.quiz__btn-next'),
     quizBox = document.querySelector('.quiz-container');
+    header = document.querySelector('.quiz-container header')
 
 //show rules, start
 startBtn.addEventListener('click', () => {
@@ -33,15 +34,18 @@ let timerSec = 15;
 let quizTimerId;
 //timer border setinterval id
 let timerLineId;
-//timer line initial
+//timer line initial value
 let timerLineValue = 0;
+//container width to check line speed
+let timerLineWidth = quizBox.getBoundingClientRect().width;
+console.log(timerLineWidth)
 
 //function to show card info, getting data from array from questions.js
 function showCardInfo(index) {
     //start timer
     setupTimer(timerSec);
     //start timer line
-    startTimerLine(timerLineValue)
+    startTimerLine(timerLineValue, timerLineWidth)
     //get single question info from questions by index
     const item = questions[index];
     const question = item.question;
@@ -286,12 +290,21 @@ replayBtn.addEventListener('click', () => {
 
 // **** COLOR TIMER BORDER ****
 const timerLine = document.querySelector('.quiz__timer-line')
-function startTimerLine(time){
-    timerLineId = setInterval(timer, 28);
+function startTimerLine(time, width){
+    //depending on element width we wanna change setInterval speed
+    let speed = 0;
+    if (width >= 540) {
+        speed = 28
+    } else {
+        speed = 44
+    }
+
+    timerLineId = setInterval(timer, speed);
+    console.log(width)
     function timer(){
         time++; //upgrading time value with 1
         timerLine.style.width = time + "px"; //increasing width of timerline with px by time value
-        if(time > 540){ //if time value is greater than 540
+        if(time > width){ //if time value is greater than 540
             clearInterval(timerLineId); //clear timerLine
         }
     }
