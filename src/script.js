@@ -12,7 +12,7 @@ startBtn.addEventListener('click', () => {
 
 //exit quiz
 quitBtn.addEventListener('click', () => {
-    info.classList.remove('active-info')
+    window.location.reload();
 })
 
 const quizBox = document.querySelector('.quiz-container');
@@ -63,11 +63,12 @@ function showCardInfo(index) {
         option.addEventListener('click', (e) => {
             const target = e.target;
             //get clicked element text content
-            const text = target.textContent;
+            // const text = target.textContent;
             //get correct answer
             const correctOption = findCorrectOptionElement();
-
-            if (text === answer) {
+            console.log(target)
+            console.log(target.firstElementChild)
+            if (target.textContent === answer || target.firstElementChild.textContent === answer) {
                 //increase correct answer value and show green tick to user
                 correctAns++;
                 option.classList.add('correct')
@@ -226,3 +227,10 @@ function setupTimer(sec) {
 
     quizTimer = setInterval(updateTimer, 1000)
 }
+
+// **** QUIT QUIZ  ****
+// const quitBtn = document.querySelector('.result__btn-quit');
+
+// quitBtn.addEventListener('click', () => {
+//     window.location.reload();
+// })
