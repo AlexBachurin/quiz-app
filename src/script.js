@@ -28,14 +28,20 @@ let questionCounter = 0;
 //counter for correct answers
 let correctAns = 0;
 //timer time in seconds
-let timerSec = 15;
+let timerSec = 16;
 //quiz timer setinterval id
-let quizTimer;
+let quizTimerId;
+//timer border setinterval id
+let timerLineId;
+//timer line initial
+let timerLineValue = 0;
 
 //function to show card info, getting data from array from questions.js
 function showCardInfo(index) {
     //start timer
     setupTimer(timerSec);
+    //start timer line
+    startTimerLine(timerLineValue)
     //get single question info from questions by index
     const item = questions[index];
     const question = item.question;
@@ -86,7 +92,9 @@ function showCardInfo(index) {
             //disable clicking on options
             disableOptions(optionChoice)
             //clear quiz timer
-            clearInterval(quizTimer)
+            clearInterval(quizTimerId)
+            //clear timer line timer
+            clearInterval(timerLineId)
 
         })
         
@@ -195,10 +203,6 @@ function showIcons() {
 }
 
 
-
-
-
-
 // **** TIMER ****
 
 //get time diff
@@ -218,7 +222,7 @@ function setupTimer(sec) {
         const timeDiff = getTimeDiff(deadline)
         timerDOM.textContent = timeDiff;
         if (timeDiff <= 0) {
-            clearInterval(quizTimer)
+            clearInterval(quizTimerId)
             //enable next button
             enableBtn();
             //disable clicking on options
@@ -232,7 +236,7 @@ function setupTimer(sec) {
         }
     }
 
-    quizTimer = setInterval(updateTimer, 1000)
+    quizTimerId = setInterval(updateTimer, 1000)
 }
 
 
@@ -257,7 +261,9 @@ nextBtn.addEventListener('click', () => {
         //reset question counter
         questionCounter = 0;
         //reset timer
-        clearInterval(quizTimer);
+        clearInterval(quizTimerId);
+        //reset timer line
+        clearInterval(timerLineId)
         
     }
 })
@@ -277,4 +283,17 @@ replayBtn.addEventListener('click', () => {
     resultBox.classList.remove('active-info')
     info.classList.add('active-info')
 })
+
+// **** COLOR TIMER BORDER ****
+const timerLine = document.querySelector('.quiz__timer-line')
+function startTimerLine(time){
+    timerLineId = setInterval(timer, 29);
+    function timer(){
+        time += 1; //upgrading time value with 1
+        timerLine.style.width = time + "px"; //increasing width of time_line with px by time value
+        if(time > 540){ //if time value is greater than 540
+            clearInterval(timerLineId); //clear timerLine
+        }
+    }
+}
 
