@@ -121,11 +121,22 @@ function showOptionsList(answer, options) {
     optionsDOM.innerHTML = optionsList;
 }
 
+// show footer info(number of question and all questions count)
 function quizFooterInfo() {
     const currentOption = document.querySelector('.quiz__num-current');
     const totalNumOption = document.querySelector('.quiz__num-total');
     currentOption.textContent = questionCounter + 1;
     totalNumOption.textContent = questions.length;
+}
+// show result(how many correct answers)
+function showScore() {
+    const userScore = document.querySelector('.result__score-correct');
+    const totalScore = document.querySelector('.result__score-total');
+    //show user score, correct answers stored in correctAns variable
+    userScore.textContent = correctAns;
+    //total score is our array with questions length
+    totalScore.textContent = questions.length;
+
 }
 
 // **** HELPING FUNCTIONALITY ****
@@ -170,22 +181,7 @@ function showIcons() {
 
 
 
-//next btn
-const nextBtn = document.querySelector('.quiz__btn-next');
 
-nextBtn.addEventListener('click', () => {
-    //check counter
-    questionCounter++;
-    //if we still have questions keep asking them
-    if (questionCounter < questions.length) {
-        console.log(questionCounter)
-        showCardInfo(questionCounter);
-    //else show result window
-    } else if (questionCounter === questions.length) {
-        resultBox.classList.add('active-info');
-        quizBox.classList.remove('active-info');
-    }
-})
 
 // **** TIMER ****
 
@@ -223,6 +219,26 @@ function setupTimer(sec) {
     quizTimer = setInterval(updateTimer, 1000)
 }
 
+
+// **** NEXT BUTTON FUNCTIONALITY ****
+const nextBtn = document.querySelector('.quiz__btn-next');
+
+nextBtn.addEventListener('click', () => {
+    //check counter
+    questionCounter++;
+    //if we still have questions keep asking them
+    if (questionCounter < questions.length) {
+        console.log(questionCounter)
+        showCardInfo(questionCounter);
+    //else show result window
+    } else if (questionCounter === questions.length) {
+        resultBox.classList.add('active-info');
+        quizBox.classList.remove('active-info');
+        //show user score
+        showScore()
+    }
+})
+
 // **** QUIT QUIZ  ****
 //exit quiz
 quitBtn.forEach(btn => {
@@ -230,3 +246,12 @@ quitBtn.forEach(btn => {
         window.location.reload();
     })
 })
+
+// **** REPLAY QUIZ ****
+const replayBtn = document.querySelector('.result__btn-replay');
+
+replayBtn.addEventListener('click', () => {
+    resultBox.classList.remove('active-info')
+    info.classList.add('active-info')
+})
+
