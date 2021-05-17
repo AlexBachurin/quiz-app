@@ -28,7 +28,7 @@ let questionCounter = 0;
 //counter for correct answers
 let correctAns = 0;
 //timer time in seconds
-let timerSec = 16;
+let timerSec = 15;
 //quiz timer setinterval id
 let quizTimerId;
 //timer border setinterval id
@@ -215,9 +215,10 @@ function getTimeDiff(deadline) {
 function setupTimer(sec) {
     //get timer from page
     const timerDOM = document.querySelector('.quiz__timer-sec');
-    
     //get deadline
     const deadline = Date.parse(new Date()) + sec*1000;
+    //remove delay on showing timer
+    updateTimer();
     function updateTimer() {
         const timeDiff = getTimeDiff(deadline)
         timerDOM.textContent = timeDiff;
