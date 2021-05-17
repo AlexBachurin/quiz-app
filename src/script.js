@@ -249,7 +249,6 @@ nextBtn.addEventListener('click', () => {
     questionCounter++;
     //if we still have questions keep asking them
     if (questionCounter < questions.length) {
-        console.log(questionCounter)
         showCardInfo(questionCounter);
     //else show result window
     } else if (questionCounter === questions.length) {
@@ -288,10 +287,10 @@ replayBtn.addEventListener('click', () => {
 // **** COLOR TIMER BORDER ****
 const timerLine = document.querySelector('.quiz__timer-line')
 function startTimerLine(time){
-    timerLineId = setInterval(timer, 29);
+    timerLineId = setInterval(timer, 28);
     function timer(){
-        time += 1; //upgrading time value with 1
-        timerLine.style.width = time + "px"; //increasing width of time_line with px by time value
+        time++; //upgrading time value with 1
+        timerLine.style.width = time + "px"; //increasing width of timerline with px by time value
         if(time > 540){ //if time value is greater than 540
             clearInterval(timerLineId); //clear timerLine
         }
